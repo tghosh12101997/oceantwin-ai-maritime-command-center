@@ -42,7 +42,7 @@ The Grafana dashboard gives an operations-control-room view of the maritime syst
 
 ### Streamlit Command Center
 
-![Streamlit Command Center](img/Screenshot 2026-05-26 103704.jpg)
+![Streamlit Command Center](img/Screenshot_2026-05-26_103704.jpg)
 
 The Streamlit command center provides a futuristic executive cockpit with route KPIs, ETA risk, carbon estimate, EU exposure, global route visualization, operational narrative, and AI-style recommendation panel.
 
