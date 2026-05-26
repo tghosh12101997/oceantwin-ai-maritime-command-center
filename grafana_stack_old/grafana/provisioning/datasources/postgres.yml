@@ -1,0 +1,15 @@
+apiVersion: 1
+datasources:
+  - name: OceanTwin PostgreSQL
+    type: postgres
+    access: proxy
+    url: oceantwin-postgres:5432
+    user: oceantwin
+    secureJsonData:
+      password: oceantwin
+    jsonData:
+      database: oceantwin
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: false
+    isDefault: true

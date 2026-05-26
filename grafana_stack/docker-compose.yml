@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: oceantwin_postgres
+    environment:
+      POSTGRES_DB: oceantwin
+      POSTGRES_USER: oceantwin
+      POSTGRES_PASSWORD: oceantwin
+    ports:
+      - "5433:5432"
+    volumes:
+      - oceantwin_pg_data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U oceantwin -d oceantwin"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  grafana:
+    image: grafana/grafana:11.3.0
+    container_name: oceantwin_grafana
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: oceantwin
+      GF_USERS_DEFAULT_THEME: dark
+      GF_DASHBOARDS_MIN_REFRESH_INTERVAL: 5s
+    ports:
+      - "3000:3000"
+    volumes:
+      - oceantwin_grafana_data:/var/lib/grafana
+      - ./provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./dashboards:/var/lib/grafana/dashboards
+
+volumes:
+  oceantwin_pg_data:
+  oceantwin_grafana_data:

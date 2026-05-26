@@ -1,0 +1,11 @@
+apiVersion: 1
+providers:
+  - name: OceanTwin Dashboards
+    orgId: 1
+    folder: OceanTwin AI
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards

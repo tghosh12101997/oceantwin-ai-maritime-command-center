@@ -1,0 +1,953 @@
+{
+  "uid": "oceantwin-command-center",
+  "title": "OceanTwin AI - Maritime Command Center",
+  "tags": [
+    "oceantwin",
+    "maritime",
+    "fleet",
+    "ais",
+    "carbon"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 2,
+  "refresh": "10s",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "Tracked vessels",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT count(*) AS vessels FROM vessel_positions;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "Hapag-Lloyd watchlist",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT count(*) AS hapag_lloyd_vessels FROM vessel_positions WHERE company='Hapag-Lloyd';",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "Avg speed kn",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT round(avg(sog)::numeric, 1) AS avg_speed_kn FROM vessel_positions;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "High-risk vessels",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT count(*) AS high_risk FROM vessel_positions WHERE risk_score >= 70;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "Total delay hrs",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT round(sum(delay_hours)::numeric, 1) AS delay_hours FROM operational_events WHERE delay_hours > 0;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "Cost impact $",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 15,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT round(sum(cost_usd)::numeric, 0) AS cost_usd FROM operational_events;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "CO\u2082 delta t",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT round(sum(co2_delta_tonnes)::numeric, 1) AS co2_delta_tonnes FROM operational_events;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 75
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "type": "stat",
+      "title": "Stopped / waiting",
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT count(*) AS stopped_or_waiting FROM vessel_positions WHERE sog < 1;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "view": {
+          "id": "fit",
+          "lat": 20,
+          "lon": 20,
+          "zoom": 1
+        },
+        "controls": {
+          "showZoom": true,
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showScale": true,
+          "showDebug": false
+        },
+        "tooltip": {
+          "mode": "details"
+        },
+        "layers": [
+          {
+            "type": "markers",
+            "name": "Fleet positions",
+            "config": {
+              "showLegend": true,
+              "style": {
+                "size": {
+                  "fixed": 10,
+                  "min": 4,
+                  "max": 20
+                },
+                "color": {
+                  "field": "risk_score",
+                  "fixed": "green"
+                },
+                "opacity": 0.9,
+                "rotation": {
+                  "field": "heading",
+                  "fixed": 0
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              },
+              "location": {
+                "mode": "coords",
+                "latitude": "lat",
+                "longitude": "lon"
+              }
+            }
+          }
+        ]
+      },
+      "type": "geomap",
+      "title": "FleetPulse World Map - live/demo vessel positions",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "\nSELECT vessel_name, company, lat, lon, sog, heading, destination, eta, risk_score, co2_tonnes, cargo_teu\nFROM vessel_positions\nORDER BY risk_score DESC;\n",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "timeseries",
+      "title": "Operational delays over time",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "time_series",
+          "rawSql": "SELECT event_time AS time, event_type AS metric, delay_hours FROM operational_events ORDER BY event_time;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "barchart",
+      "title": "Delay by event type",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 14
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT event_type, sum(delay_hours) AS delay_hours FROM operational_events GROUP BY event_type ORDER BY delay_hours DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "type": "piechart",
+      "title": "Severity mix",
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 14
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT severity, count(*) AS events FROM operational_events GROUP BY severity ORDER BY events DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "barchart",
+      "title": "CO\u2082 impact by vessel",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 22
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT vessel_name, sum(co2_delta_tonnes) AS co2_delta_tonnes FROM operational_events GROUP BY vessel_name ORDER BY co2_delta_tonnes DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "barchart",
+      "title": "Cost impact by port",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 22
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT port, sum(cost_usd) AS cost_usd FROM operational_events GROUP BY port ORDER BY cost_usd DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "barchart",
+      "title": "Port risk index",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 22
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT port, risk_score FROM port_risk ORDER BY risk_score DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true
+      },
+      "type": "table",
+      "title": "Route risk and carbon intensity",
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 30
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT route, distance_nm, eta_risk, carbon_intensity, revenue_at_risk_usd FROM route_kpis ORDER BY eta_risk DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true
+      },
+      "type": "table",
+      "title": "Fleet position table",
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 30
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT vessel_name, company, lat, lon, sog, heading, destination, eta, risk_score, co2_tonnes, cargo_teu FROM vessel_positions ORDER BY risk_score DESC;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true
+      },
+      "type": "table",
+      "title": "High risk events feed",
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          },
+          "format": "table",
+          "rawSql": "SELECT event_time, vessel_name, event_type, severity, port, delay_hours, cost_usd, co2_delta_tonnes FROM operational_events WHERE severity IN ('High','Medium') ORDER BY event_time DESC;",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

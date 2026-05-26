@@ -1,0 +1,6 @@
+vessel_name,company,lat,lon,sog,heading,destination,eta,imo,mmsi
+Berlin Express,Hapag-Lloyd,51.95,4.15,14.8,91,Singapore,2026-06-04,,
+Hamburg Express,Hapag-Lloyd,31.25,32.31,12.1,128,Jebel Ali,2026-05-30,,
+Al Nefud,Hapag-Lloyd,1.29,103.84,9.6,270,Shanghai,2026-06-02,,
+Leverkusen Express,Hapag-Lloyd,53.54,9.96,0.2,180,Rotterdam,2026-05-27,,
+OceanTwin Demo Vessel,Demo Line,37.94,23.65,16.4,111,Port Said,2026-05-29,9999999,123456789

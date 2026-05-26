@@ -1,0 +1,27 @@
+services:
+  oceantwin-postgres:
+    image: postgres:16
+    container_name: oceantwin-postgres
+    environment:
+      POSTGRES_DB: oceantwin
+      POSTGRES_USER: oceantwin
+      POSTGRES_PASSWORD: oceantwin
+    ports:
+      - "55432:5432"
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  oceantwin-grafana:
+    image: grafana/grafana:11.3.0
+    container_name: oceantwin-grafana
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: oceantwin
+      GF_USERS_DEFAULT_THEME: dark
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - oceantwin-postgres

@@ -1,0 +1,180 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "stat",
+      "title": "Tracked vessels",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "format": "table",
+          "rawSql": "SELECT count(*) AS tracked_vessels FROM vessel_positions;",
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "stat",
+      "title": "Average speed",
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "targets": [
+        {
+          "format": "table",
+          "rawSql": "SELECT round(avg(sog)::numeric, 2) AS avg_speed_knots FROM vessel_positions;",
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "barchart",
+      "title": "Delay by event type",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "format": "table",
+          "rawSql": "SELECT event_type, sum(delay_hours) AS delay_hours FROM operational_events GROUP BY event_type ORDER BY delay_hours DESC;",
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "timeseries",
+      "title": "Operational delays over time",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "targets": [
+        {
+          "format": "time_series",
+          "rawSql": "SELECT event_time AS time, event_type AS metric, delay_hours FROM operational_events ORDER BY event_time;",
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "oceantwin-postgres"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "type": "table",
+      "title": "Fleet positions",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "targets": [
+        {
+          "format": "table",
+          "rawSql": "SELECT * FROM vessel_positions ORDER BY sog DESC;",
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "oceantwin-postgres"
+          }
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "tags": [
+    "maritime",
+    "oceantwin"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "OceanTwin AI - Maritime Command Center",
+  "version": 2,
+  "uid": "oceantwin-command-center"
+}

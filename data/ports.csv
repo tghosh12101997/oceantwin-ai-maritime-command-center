@@ -1,0 +1,16 @@
+port_name,country,lat,lon,congestion_score,eu_port
+Hamburg,Germany,53.5461,9.9661,0.62,true
+Rotterdam,Netherlands,51.9490,4.1420,0.72,true
+Antwerp,Belgium,51.2602,4.4028,0.68,true
+Singapore,Singapore,1.2644,103.8200,0.76,false
+Shanghai,China,31.2304,121.4737,0.81,false
+Colombo,Sri Lanka,6.9271,79.8612,0.57,false
+Jebel Ali,United Arab Emirates,25.0118,55.0615,0.52,false
+Port Said,Egypt,31.2653,32.3019,0.66,false
+Los Angeles,United States,33.7405,-118.2775,0.70,false
+New York,United States,40.6895,-74.0445,0.64,false
+Genoa,Italy,44.4056,8.9463,0.55,true
+Piraeus,Greece,37.9420,23.6469,0.58,true
+Valencia,Spain,39.4484,-0.3169,0.61,true
+Bremerhaven,Germany,53.5396,8.5809,0.59,true
+Busan,South Korea,35.1796,129.0756,0.69,false

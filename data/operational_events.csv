@@ -1,0 +1,11 @@
+event_id,timestamp,vessel_name,event_type,severity,port,delay_hours,cost_usd,co2_delta_tonnes,customer_impact
+EVT-1001,2026-05-20 08:00,Berlin Express,Port congestion,High,Rotterdam,18,42000,55,High
+EVT-1002,2026-05-20 14:30,Hamburg Express,Weather deviation,Medium,Port Said,7,18000,32,Medium
+EVT-1003,2026-05-21 10:15,Al Nefud,Slow steaming,Low,Singapore,-4,-9000,-48,Low
+EVT-1004,2026-05-21 18:45,Leverkusen Express,Berth waiting,Medium,Hamburg,11,25000,21,Medium
+EVT-1005,2026-05-22 09:20,Berlin Express,Terminal delay,High,Antwerp,16,38000,44,High
+EVT-1006,2026-05-22 21:10,Al Muraykh,Schedule recovery,Medium,Colombo,-6,12000,66,Medium
+EVT-1007,2026-05-23 05:50,Hamburg Express,Canal queue,High,Port Said,20,51000,72,High
+EVT-1008,2026-05-23 16:25,Leverkusen Express,Customs hold,Medium,Rotterdam,9,22000,12,Medium
+EVT-1009,2026-05-24 11:40,Al Nefud,Port congestion,High,Shanghai,22,61000,87,High
+EVT-1010,2026-05-24 19:00,Al Muraykh,Green routing,Low,Jebel Ali,-3,-7000,-39,Low

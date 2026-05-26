@@ -1,0 +1,7 @@
+company,vessel_name,imo,mmsi,vessel_class,capacity_teu
+Hapag-Lloyd,Berlin Express,,,container_ship,23500
+Hapag-Lloyd,Hamburg Express,,,container_ship,13169
+Hapag-Lloyd,Al Nefud,,,container_ship,15000
+Hapag-Lloyd,Al Muraykh,,,container_ship,15000
+Hapag-Lloyd,Leverkusen Express,,,container_ship,13800
+Demo Line,OceanTwin Demo Vessel,9999999,123456789,container_ship,12000
